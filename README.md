@@ -13,7 +13,6 @@ make run
 ##### Via maven
 
 ```sh
-mvn install -f Asteroids/pom.xml
-mvn package -f Asteroids/Core/pom.xml
-java -jar bin/NetBeansLab1.jar
+mvn install -DskipTests -f Asteroids/pom.xml
+mvn nbm:run-platform -f Asteroids/application/pom.xml
 ```

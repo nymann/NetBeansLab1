@@ -1,7 +1,7 @@
 package dk.sdu.mmmi.cbse.asteroidsystem;
 
-import dk.sdu.mmmi.cbse.common.IShapeRender;
-import dk.sdu.mmmi.cbse.common.ShapeType;
+import dk.sdu.mmmi.cbse.common.shape.IShapeRender;
+import dk.sdu.mmmi.cbse.common.shape.ShapeType;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.EntityType;
 

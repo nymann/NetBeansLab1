@@ -1,7 +1,7 @@
 package dk.sdu.mmmi.cbse.common.data;
 
-import dk.sdu.mmmi.cbse.common.IShapeRender;
-import dk.sdu.mmmi.cbse.common.ShapeType;
+import dk.sdu.mmmi.cbse.common.shape.IShapeRender;
+import dk.sdu.mmmi.cbse.common.shape.ShapeType;
 import dk.sdu.mmmi.cbse.common.data.entityparts.EntityPart;
 
 import java.io.Serializable;

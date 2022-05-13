@@ -1,12 +1,13 @@
 package dk.sdu.mmmi.cbse.enemysystem;
 
-import dk.sdu.mmmi.cbse.bulletsystem.BulletControlSystem;
+import dk.sdu.mmmi.cbse.common.bullet.IBulletBehaviour;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import org.openide.util.Lookup;
 import org.openide.util.lookup.ServiceProvider;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
             positionPart.process(gameData, enemy);
 
             if (enemy.canShoot(gameData.getDelta())) {
-                Entity bullet = BulletControlSystem.shoot(enemy);
+                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).shoot(enemy);
                 enemy.resetCooldown();
                 world.addEntity(bullet);
             }

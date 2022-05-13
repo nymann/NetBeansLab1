@@ -1,15 +1,15 @@
 package dk.sdu.mmmi.cbse.playersystem;
 
-import dk.sdu.mmmi.cbse.bulletsystem.BulletControlSystem;
+import dk.sdu.mmmi.cbse.common.bullet.IBulletBehaviour;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
+import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import org.openide.util.Lookup;
 import org.openide.util.lookup.ServiceProvider;
-
-import static dk.sdu.mmmi.cbse.common.data.GameKeys.*;
 
 @ServiceProvider(service = IEntityProcessingService.class)
 public class PlayerControlSystem implements IEntityProcessingService {
@@ -20,15 +20,15 @@ public class PlayerControlSystem implements IEntityProcessingService {
             Player player = (Player) entity;
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
-            if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(SPACE)) {
-                Entity bullet = BulletControlSystem.shoot(player);
+            if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(GameKeys.SPACE)) {
+                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).shoot(player);
                 player.resetCooldown();
                 world.addEntity(bullet);
             }
 
-            movingPart.setLeft(gameData.getKeys().isDown(LEFT));
-            movingPart.setRight(gameData.getKeys().isDown(RIGHT));
-            movingPart.setUp(gameData.getKeys().isDown(UP));
+            movingPart.setLeft(gameData.getKeys().isDown(GameKeys.LEFT));
+            movingPart.setRight(gameData.getKeys().isDown(GameKeys.RIGHT));
+            movingPart.setUp(gameData.getKeys().isDown(GameKeys.UP));
 
             movingPart.process(gameData, player);
             positionPart.process(gameData, player);

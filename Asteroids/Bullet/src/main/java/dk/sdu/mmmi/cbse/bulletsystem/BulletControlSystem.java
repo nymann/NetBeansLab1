@@ -1,5 +1,7 @@
 package dk.sdu.mmmi.cbse.bulletsystem;
 
+import dk.sdu.mmmi.cbse.common.bullet.Bullet;
+import dk.sdu.mmmi.cbse.common.bullet.IBulletBehaviour;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
@@ -8,11 +10,15 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import org.openide.util.lookup.ServiceProvider;
+import org.openide.util.lookup.ServiceProviders;
 
-@ServiceProvider(service = IEntityProcessingService.class)
-public class BulletControlSystem implements IEntityProcessingService {
+@ServiceProviders(value = {
+        @ServiceProvider(service = IEntityProcessingService.class),
+        @ServiceProvider(service = IBulletBehaviour.class)
+})
+public class BulletControlSystem implements IEntityProcessingService, IBulletBehaviour {
 
-    public static Entity shoot(Entity origin) {
+    public Entity shoot(Entity origin) {
         PositionPart originPos = origin.getPart(PositionPart.class);
 
         float r = origin.getRadius();

@@ -2,8 +2,8 @@ package dk.sdu.mmmi.cbse.main;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import dk.sdu.mmmi.cbse.common.IShapeRender;
-import dk.sdu.mmmi.cbse.common.ShapeType;
+import dk.sdu.mmmi.cbse.common.shape.IShapeRender;
+import dk.sdu.mmmi.cbse.common.shape.ShapeType;
 
 public class MyShapeRender implements IShapeRender {
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();

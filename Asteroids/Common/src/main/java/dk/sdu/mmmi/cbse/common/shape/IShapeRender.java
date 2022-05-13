@@ -1,4 +1,4 @@
-package dk.sdu.mmmi.cbse.common;
+package dk.sdu.mmmi.cbse.common.shape;
 
 public interface IShapeRender {
     public void begin(ShapeType shapeType);

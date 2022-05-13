@@ -7,16 +7,9 @@
         <artifactId>Asteroids-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>Bullet</artifactId>
+    <artifactId>CommonBullet</artifactId>
     <packaging>nbm</packaging>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
-
-
+    <name>CommonBullet</name>
     <build>
         <plugins>
             <plugin>
@@ -26,7 +19,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publicPackages>
-                        <publicPackage>dk.sdu.mmmi.cbse.bulletsystem</publicPackage>
+                        <publicPackage>dk.sdu.mmmi.cbse.common.bullet</publicPackage>
                     </publicPackages>
                 </configuration>
             </plugin>
@@ -55,30 +48,18 @@
             </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-api-annotations-common</artifactId>
             <version>${netbeans.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.netbeans.api</groupId>
-            <artifactId>org-openide-util-lookup</artifactId>
-            <version>${netbeans.version}</version>
-            <type>jar</type>
-        </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>Common</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>CommonBullet</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
     </dependencies>
-
 </project>

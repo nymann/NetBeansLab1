@@ -5,7 +5,10 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.ExpirationPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+import org.openide.util.lookup.ServiceProvider;
 
+
+@ServiceProvider(service = IPostEntityProcessingService.class)
 public class LifeProcesser implements IPostEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {

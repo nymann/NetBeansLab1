@@ -7,24 +7,10 @@ import dk.sdu.mmmi.cbse.common.data.entityparts.ExpirationPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import org.openide.util.lookup.ServiceProvider;
 
+@ServiceProvider(service = IEntityProcessingService.class)
 public class BulletControlSystem implements IEntityProcessingService {
-
-    @Override
-    public void process(GameData gameData, World world) {
-        for (Entity bullet : world.getEntities(Bullet.class)) {
-            PositionPart positionPart = bullet.getPart(PositionPart.class);
-            MovingPart movingPart = bullet.getPart(MovingPart.class);
-            ExpirationPart expirationPart = bullet.getPart(ExpirationPart.class);
-            movingPart.setUp(true);
-
-            movingPart.process(gameData, bullet);
-            positionPart.process(gameData, bullet);
-            expirationPart.process(gameData, bullet);
-
-            updateShape(bullet);
-        }
-    }
 
     public static Entity shoot(Entity origin) {
         PositionPart originPos = origin.getPart(PositionPart.class);
@@ -45,6 +31,22 @@ public class BulletControlSystem implements IEntityProcessingService {
         bullet.add(new ExpirationPart(1));
 
         return bullet;
+    }
+
+    @Override
+    public void process(GameData gameData, World world) {
+        for (Entity bullet : world.getEntities(Bullet.class)) {
+            PositionPart positionPart = bullet.getPart(PositionPart.class);
+            MovingPart movingPart = bullet.getPart(MovingPart.class);
+            ExpirationPart expirationPart = bullet.getPart(ExpirationPart.class);
+            movingPart.setUp(true);
+
+            movingPart.process(gameData, bullet);
+            positionPart.process(gameData, bullet);
+            expirationPart.process(gameData, bullet);
+
+            updateShape(bullet);
+        }
     }
 
     private void updateShape(Entity entity) {

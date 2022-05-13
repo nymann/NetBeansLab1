@@ -6,9 +6,12 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import org.openide.util.lookup.ServiceProvider;
 
 import java.util.Random;
 
+
+@ServiceProvider(service = IEntityProcessingService.class)
 public class AsteroidControlSystem implements IEntityProcessingService {
     private final Random random = new Random();
 

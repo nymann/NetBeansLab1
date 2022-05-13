@@ -6,10 +6,12 @@ import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.data.entityparts.LifePart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
+import org.openide.util.lookup.ServiceProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@ServiceProvider(service = IPostEntityProcessingService.class)
 public class CollisionDetection implements IPostEntityProcessingService {
     @Override
     public void process(GameData gameData, World world) {

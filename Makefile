@@ -1,18 +1,17 @@
 COMPONENT=Asteroids
 JAVA_FILES=$(shell find ${COMPOENT} -type f -name "*.java")
 POM_FILES=$(shell find ${COMPOENT} -type f -name "pom.xml")
-PACKAGE=bin/JavaLab.jar
+BIN=Asteroids/application/target/Asteroids-app-1.0-SNAPSHOT.zip
 
 default all:run 
 
 test: ${JAVA_FILES}
 	mvn test -f ${COMPONENT}/pom.xml
 
-${PACKAGE}: ${JAVA_FILES} ${POM_FILES}
-	mvn install -f ${COMPONENT}/pom.xml
-	mvn package -f ${COMPONENT}/Core/pom.xml
+${BIN}: ${JAVA_FILES} ${POM_FILES}
+	mvn install -DskipTests -f ${COMPONENT}/pom.xml
 
-package: ${PACKAGE}
+install: ${BIN}
 
-run: ${PACKAGE}
-	java -jar ${PACKAGE}
+run: ${BIN}
+	mvn nbm:run-platform -f ${COMPONENT}/application/pom.xml

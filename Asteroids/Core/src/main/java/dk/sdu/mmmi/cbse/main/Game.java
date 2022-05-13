@@ -4,17 +4,15 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.common.IShapeRender;
-import dk.sdu.mmmi.cbse.common.MyShapeRender;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.spi.SPILocator;
 import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
+import org.openide.util.Lookup;
 
 import java.util.Collection;
 
@@ -22,6 +20,7 @@ public class Game implements ApplicationListener {
 
     private final GameData gameData = new GameData();
     private final World world = new World();
+    private final Lookup lookup = Lookup.getDefault();
     private Collection<? extends IPostEntityProcessingService> postEntityProcessingServices;
     private Collection<? extends IEntityProcessingService> entityProcessingServices;
     private IShapeRender sr;
@@ -36,7 +35,7 @@ public class Game implements ApplicationListener {
         cam.translate(gameData.getDisplayWidth() / 2f, gameData.getDisplayHeight() / 2f);
         cam.update();
 
-        sr = new MyShapeRender(new ShapeRenderer());
+        sr = new MyShapeRender();
 
         Gdx.input.setInputProcessor(new GameInputProcessor(gameData));
 
@@ -93,14 +92,14 @@ public class Game implements ApplicationListener {
     }
 
     private Collection<? extends IGamePluginService> getPluginServices() {
-        return SPILocator.locateAll(IGamePluginService.class);
+        return lookup.lookupAll(IGamePluginService.class);
     }
 
     private Collection<? extends IEntityProcessingService> getEntityProcessingServices() {
-        return SPILocator.locateAll(IEntityProcessingService.class);
+        return lookup.lookupAll(IEntityProcessingService.class);
     }
 
     private Collection<? extends IPostEntityProcessingService> getPostEntityProcessingServices() {
-        return SPILocator.locateAll(IPostEntityProcessingService.class);
+        return lookup.lookupAll(IPostEntityProcessingService.class);
     }
 }

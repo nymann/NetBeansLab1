@@ -1,14 +1,12 @@
-package dk.sdu.mmmi.cbse.common;
+package dk.sdu.mmmi.cbse.main;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import dk.sdu.mmmi.cbse.common.IShapeRender;
+import dk.sdu.mmmi.cbse.common.ShapeType;
 
 public class MyShapeRender implements IShapeRender {
-    private final ShapeRenderer shapeRenderer;
-
-    public MyShapeRender(ShapeRenderer shapeRenderer) {
-        this.shapeRenderer = shapeRenderer;
-    }
+    private final ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     @Override
     public void begin(ShapeType shapeType) {
@@ -18,7 +16,6 @@ public class MyShapeRender implements IShapeRender {
     @Override
     public void setColor(String hex) {
         this.shapeRenderer.setColor(Color.valueOf(hex));
-
     }
 
     private ShapeRenderer.ShapeType convertShapeType(ShapeType shapeType) {

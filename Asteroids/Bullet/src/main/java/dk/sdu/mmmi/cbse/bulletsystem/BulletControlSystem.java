@@ -18,7 +18,7 @@ import org.openide.util.lookup.ServiceProviders;
 })
 public class BulletControlSystem implements IEntityProcessingService, IBulletBehaviour {
 
-    public Entity shoot(Entity origin) {
+    public Entity bulletCreator(Entity origin) {
         PositionPart originPos = origin.getPart(PositionPart.class);
 
         float r = origin.getRadius();

@@ -21,7 +21,7 @@ public class PlayerControlSystem implements IEntityProcessingService {
             PositionPart positionPart = player.getPart(PositionPart.class);
             MovingPart movingPart = player.getPart(MovingPart.class);
             if (player.canShoot(gameData.getDelta()) && gameData.getKeys().isDown(GameKeys.SPACE)) {
-                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).shoot(player);
+                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).bulletCreator(player);
                 player.resetCooldown();
                 world.addEntity(bullet);
             }

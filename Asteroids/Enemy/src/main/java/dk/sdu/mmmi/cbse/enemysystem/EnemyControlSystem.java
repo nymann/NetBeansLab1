@@ -39,7 +39,7 @@ public class EnemyControlSystem implements IEntityProcessingService {
             positionPart.process(gameData, enemy);
 
             if (enemy.canShoot(gameData.getDelta())) {
-                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).shoot(enemy);
+                Entity bullet = Lookup.getDefault().lookup(IBulletBehaviour.class).bulletCreator(enemy);
                 enemy.resetCooldown();
                 world.addEntity(bullet);
             }
